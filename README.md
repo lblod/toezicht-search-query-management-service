@@ -1,6 +1,6 @@
 # toezicht-search-query-management-service
 
-TODO
+Service that provides management of search-queries.
 
 ## Installation
 
@@ -14,32 +14,43 @@ services:
 
 ## Configuration
 
-TODO
-
 ### Environment variables
+
+- `ORGANISATION_GRAPH` : Graph where the new data/triples will be put on PUT. Default implemented.
+- `BATCH_SIZE` : Max number of triples it will retrieve on construction of a search-query. Default set to 1000.
 
    
 ## REST API
 
-### GET `/search-qeury/:uuid`
+### GET `/search-query/:uuid`
 
-TODO
+Retrieves all the triples for the search-query with the given UUID.
+
+- CONTENT-TYPE: `application/n-triples`
+
+### PUT `/search-query/:uuid`
+
+Replaces the old triples with the received triples for the search-query with the given UUID.
+
+- ACCEPTS: `application/n-triples`
+
+### DELETE `/search-query/:uuid`
+
+Deletes all the data/triples for the search-query with the given UUID.
 
 ## Model
 
-TODO
-
 ### Used prefixes
 
-Prefix | URI ### Email
-
-Once the errors have been picked up by this service, we will create an new email about it.
+Prefix | URI 
 --- | --- 
-ext: |  <http://mu.semte.ch/vocabularies/ext/>
+searchToezicht: |  <http://lblod.data.gift/vocabularies/search-queries-toezicht/>
+skos: |  <http://www.w3.org/2004/02/skos/core#>
+mu: |  <http://mu.semte.ch/vocabularies/core/>
 
 ### Search Query
 
-TODO
+Encapsulated a preset of search qeuries/filters.
 
 #### Class
 
@@ -49,7 +60,11 @@ TODO
 
  Name | Predicate | Range | Definition 
 --- | --- | --- | ---
-label | `rdfs:label` | `xsd:string` | Label of he error
+uuid | `mu:uuid` | `xsd:string` | Unique identifier
+label | `skos:prefLabel` | `xsd:string` | Name of the SearchQuery
+comment | `skos:comment` | `xsd:string` | More detailed description of the SearchQeury
+
+TODO add all the supported filters.
 
 ## Development
 
