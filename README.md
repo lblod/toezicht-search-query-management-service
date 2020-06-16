@@ -65,6 +65,7 @@ search-query-managment:
   image: semtech/mu-javascript-template:1.4.0
   ports:
     - 8888:80
+    - 9229:9229
   environment:
     NODE_ENV: "development"
   volumes:
