@@ -8,7 +8,7 @@ To add the service to your stack, add the following snippet to docker-compose.ym
 
 ```
 services:
-  search-qeury-managment:
+  search-query-managment:
     image: lblod/toezicht-search-query-management-service:x.x.x
 ```
 
@@ -61,7 +61,7 @@ we would recommend reading "[Developing with the template](https://github.com/mu
 Paste the following snip-it in your `docker-compose.override.yml`:
 
 ````  
-search-qeury-managment:
+search-query-managment:
   image: semtech/mu-javascript-template:1.4.0
   ports:
     - 8888:80

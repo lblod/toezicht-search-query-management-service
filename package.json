@@ -2,7 +2,10 @@
   "name": "toezicht-search-query-management-service",
   "version": "0.1.0",
   "description": "",
-  "dependencies": {},
+  "dependencies": {
+    "@lblod/mu-auth-sudo": "^0.2.0",
+    "rdflib": "1.1.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
