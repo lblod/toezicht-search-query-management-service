@@ -3,13 +3,20 @@ import bodyParser from 'body-parser';
 import {deleteSearchQuery, getSearchQuery, updateSearchQuery} from "./lib/search-qeury";
 import {getFileContent} from "./lib/file-helpers";
 
-export const ACTIVE_FORM = 'share://search-query/form.ttl';
+const FORMS = {
+  'ebd65df9-5566-47c2-859a-ceff562881ab': 'share://search-query/config-form.ttl',
+  'e025a601-b50b-4abd-a6de-d0c3b619795c': 'share://search-query/exe-form.ttl'
+}
 
 // ENV var.
 export const BATCH_SIZE = parseInt(process.env.CONSTRUCT_BATCH_SIZE) || 1000;
 export const ORGANISATION_GRAPH = process.env.ORGANIZATION_GRAPH || 'http://mu.semte.ch/graphs/organizations/141d9d6b-54af-4d17-b313-8d1c30bc3f5b';
 
-app.use(bodyParser.text({ type: function(req) { return /^text\/turtle/.test(req.get('content-type')); } }));
+app.use(bodyParser.text({
+  type: function (req) {
+    return /^text\/turtle/.test(req.get('content-type'));
+  }
+}));
 
 app.get('/', function (req, res) {
   res.send('toezicht-search-query-management-service is healthy and working! :)');
@@ -52,12 +59,13 @@ app.delete('/search-queries/:uuid', async function (req, res, next) {
   }
 });
 
-app.get('/search-query-form', async function (req, res, next) {
+app.get('/search-query-forms/:uuid', async function (req, res, next) {
+  const uuid = req.params.uuid;
   try {
-    const form = await getFileContent(ACTIVE_FORM);
+    const form = await getFileContent(FORMS[uuid]);
     return res.status(200).set('content-type', 'text/turtle').send(form);
   } catch (e) {
-    console.log(`Something went wrong while retrieving the form`);
+    console.log(`Something went wrong while retrieving the form for id ${uuid}`);
     console.log(e);
     return next(e);
   }

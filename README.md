@@ -40,6 +40,10 @@ Replaces the old triples with the received triples for the search-query with the
 
 Deletes all the data/triples for the search-query with the given UUID.
 
+### GET `/search-query-forms/:uuid`
+
+Retrieves the content of the form for the given UUID.
+
 ## Model
 
 ### Used prefixes
