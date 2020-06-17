@@ -10,6 +10,8 @@ To add the service to your stack, add the following snippet to docker-compose.ym
 services:
   search-query-managment:
     image: lblod/toezicht-search-query-management-service:x.x.x
+    volumes:
+      - ./config/search-query:/share/search-query
 ```
 
 ## Configuration
@@ -84,4 +86,5 @@ search-query-managment:
   environment:
     NODE_ENV: "development"
   volumes:
+    - ./config/search-query:/share/search-query
     - /absolute/path/to/your/sources/:/app/
