@@ -2,6 +2,7 @@ import {app, errorHandler} from 'mu';
 import bodyParser from 'body-parser';
 import {deleteSearchQuery, getSearchQuery, updateSearchQuery} from "./lib/search-qeury";
 import {getFileContent} from "./lib/file-helpers";
+import {getMetaData} from "./lib/enricher";
 
 const FORMS = {
   'ebd65df9-5566-47c2-859a-ceff562881ab': 'share://search-query/config-form.ttl',
@@ -66,6 +67,17 @@ app.get('/search-query-forms/:uuid', async function (req, res, next) {
     return res.status(200).set('content-type', 'text/turtle').send(form);
   } catch (e) {
     console.log(`Something went wrong while retrieving the form for id ${uuid}`);
+    console.log(e);
+    return next(e);
+  }
+});
+
+app.get('/search-query-forms/:uuid/meta', async function (req, res, next) {
+  try {
+    const meta = await getMetaData();
+    return res.status(200).set('content-type', 'text/turtle').send(meta);
+  } catch (e) {
+    console.log(`Something went wrong while building the meta data`);
     console.log(e);
     return next(e);
   }
