@@ -34,7 +34,7 @@ Retrieves all the triples for the search-query with the given UUID.
 
 Replaces the old triples with the received triples for the search-query with the given UUID.
 
-- ACCEPTS: `application/n-triples`
+- ACCEPTS: `text/turtle`
 
 ### DELETE `/search-query/:uuid`
 
@@ -43,6 +43,14 @@ Deletes all the data/triples for the search-query with the given UUID.
 ### GET `/search-query-forms/:uuid`
 
 Retrieves the content of the form for the given UUID.
+
+- CONTENT-TYPE: `text/turtle`
+
+### GET `/search-query-forms/:uuid/meta`
+
+Retrieves the meta-data of the form for the given UUID.
+
+- CONTENT-TYPE: `application/n-triples`
 
 ## Model
 
