@@ -18,6 +18,7 @@ services:
 
 ### Environment variables
 
+- `META_CONSTRUCTION_CRON_PATTERN`: Frequency at witch the meta-data should be re-constructed. Defaults to 0 0 */2 * * *, run every 2 hours.
 - `ORGANISATION_GRAPH` : Graph where the new data/triples will be put on PUT. Default implemented.
 - `BATCH_SIZE` : Max number of triples it will retrieve on construction of a search-query. Default set to 1000.
 
@@ -45,6 +46,10 @@ Deletes all the data/triples for the search-query with the given UUID.
 Retrieves the content of the form for the given UUID.
 
 - CONTENT-TYPE: `text/turtle`
+
+### POST `search-query-forms/initiate-meta-construction`
+
+re-Constructs the meta-data of the forms.
 
 ### GET `/search-query-forms/:uuid/meta`
 
