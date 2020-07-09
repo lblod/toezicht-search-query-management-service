@@ -7,6 +7,7 @@ import {CronJob} from 'cron';
 import {deleteSearchQuery, getSearchQuery, updateSearchQuery} from "./lib/search-qeury";
 import {getFileContent} from "./lib/file-helpers";
 import {constructMetaData, getMetaData} from "./lib/enricher";
+import {waitForDatabase} from "./lib/db-helpers";
 
 
 
@@ -17,6 +18,7 @@ const FORMS = {
 
 // ENV var.
 const META_CRON_PATTERN = process.env.META_CONSTRUCTION_CRON_PATTERN || '0 0 */2 * * *';
+export const MU_SPARQL_ENDPOINT = process.env.MU_SPARQL_ENDPOINT || 'http://database:8890/sparql'
 export const BATCH_SIZE = parseInt(process.env.CONSTRUCT_BATCH_SIZE) || 1000;
 export const ORGANISATION_GRAPH = process.env.ORGANIZATION_GRAPH || 'http://mu.semte.ch/graphs/organizations/141d9d6b-54af-4d17-b313-8d1c30bc3f5b';
 
@@ -80,8 +82,9 @@ app.get('/search-query-forms/:uuid', async function (req, res, next) {
 });
 
 
-new CronJob(META_CRON_PATTERN, function () {
+new CronJob(META_CRON_PATTERN, async function () {
   console.log(`meta-data construction initiated by cron job at ${new Date().toISOString()}`);
+  await waitForDatabase();
   rp.post('http://localhost/search-query-forms/initiate-meta-construction');
 }, null, true, 'Europe/Brussels', this, true);
 
