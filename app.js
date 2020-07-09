@@ -82,14 +82,14 @@ app.get('/search-query-forms/:uuid', async function (req, res, next) {
 });
 
 
-new CronJob(META_CRON_PATTERN, async function () {
+new CronJob(META_CRON_PATTERN, function () {
   console.log(`meta-data construction initiated by cron job at ${new Date().toISOString()}`);
-  await waitForDatabase();
   rp.post('http://localhost/search-query-forms/initiate-meta-construction');
 }, null, true, 'Europe/Brussels', this, true);
 
 app.post('/search-query-forms/initiate-meta-construction', async function (req, res) {
   try {
+    await waitForDatabase();
     await constructMetaData();
     res.status(202).send().end();
   } catch (e) {
