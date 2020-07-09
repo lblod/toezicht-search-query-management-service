@@ -87,7 +87,7 @@ new CronJob(META_CRON_PATTERN, function () {
 
 app.post('/search-query-forms/initiate-meta-construction', async function (req, res) {
   try {
-    constructMetaData();
+    await constructMetaData();
     res.status(202).send().end();
   } catch (e) {
     console.log('WARNING: something went wrong while construction the meta-data.');
