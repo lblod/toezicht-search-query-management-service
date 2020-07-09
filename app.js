@@ -18,7 +18,6 @@ const FORMS = {
 
 // ENV var.
 const META_CRON_PATTERN = process.env.META_CONSTRUCTION_CRON_PATTERN || '0 0 */2 * * *';
-export const MU_SPARQL_ENDPOINT = process.env.MU_SPARQL_ENDPOINT || 'http://database:8890/sparql'
 export const BATCH_SIZE = parseInt(process.env.CONSTRUCT_BATCH_SIZE) || 1000;
 export const ORGANISATION_GRAPH = process.env.ORGANIZATION_GRAPH || 'http://mu.semte.ch/graphs/organizations/141d9d6b-54af-4d17-b313-8d1c30bc3f5b';
 
