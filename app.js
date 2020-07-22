@@ -4,7 +4,7 @@ import rp from 'request-promise';
 import {app, errorHandler} from 'mu';
 import {CronJob} from 'cron';
 
-import {deleteSearchQuery, getSearchQuery, updateSearchQuery} from "./lib/search-qeury";
+import {deleteSearchQuery, getSearchQuery, updateSearchQuery} from "./lib/search-query";
 import {getFileContent} from "./lib/file-helpers";
 import {constructMetaData, getMetaData} from "./lib/enricher";
 import {waitForDatabase} from "./lib/db-helpers";
