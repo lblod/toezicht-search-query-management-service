@@ -23,7 +23,7 @@ export const ORGANISATION_GRAPH = process.env.ORGANIZATION_GRAPH || 'http://mu.s
 
 app.use(bodyParser.text({
   type: function (req) {
-    return /^text\/turtle/.test(req.get('content-type'));
+    return /^application\/n-triples/.test(req.get('content-type'));
   }
 }));
 
@@ -35,7 +35,7 @@ app.get('/search-queries/:uuid', async function (req, res, next) {
   const uuid = req.params.uuid;
   try {
     const triples = await getSearchQuery(uuid);
-    return res.status(200).set('content-type', 'text/turtle').send(triples);
+    return res.status(200).set('content-type', 'application/n-triples').send(triples);
   } catch (e) {
     console.log(`Something went wrong while retrieving triples for search-query with id ${uuid}`);
     console.log(e);
@@ -101,7 +101,7 @@ app.post('/search-query-forms/initiate-meta-construction', async function (req, 
 app.get('/search-query-forms/:uuid/meta', async function (req, res, next) {
   try {
     const meta = await getMetaData();
-    return res.status(200).set('content-type', 'text/turtle').send(meta);
+    return res.status(200).set('content-type', 'application/n-triples').send(meta);
   } catch (e) {
     console.log(`Something went wrong while building the meta data`);
     console.log(e);

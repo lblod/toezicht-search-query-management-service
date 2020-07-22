@@ -29,13 +29,14 @@ services:
 
 Retrieves all the triples for the search-query with the given UUID.
 
-- CONTENT-TYPE: `application/n-triples`
+- Content-Type: `application/n-triples`
 
 ### PUT `/search-query/:uuid`
 
 Replaces the old triples with the received triples for the search-query with the given UUID.
 
-- ACCEPTS: `text/turtle`
+- Accepts: `application/n-triples`
+- Content-Type: `application/n-triples`
 
 ### DELETE `/search-query/:uuid`
 
@@ -45,7 +46,7 @@ Deletes all the data/triples for the search-query with the given UUID.
 
 Retrieves the content of the form for the given UUID.
 
-- CONTENT-TYPE: `text/turtle`
+- Content-Type: `text/turtle`
 
 ### POST `search-query-forms/initiate-meta-construction`
 
@@ -55,7 +56,8 @@ re-Constructs the meta-data of the forms.
 
 Retrieves the meta-data of the form for the given UUID.
 
-- CONTENT-TYPE: `application/n-triples`
+- Accepts: `application/n-triples`
+- Content-Type: `application/n-triples`
 
 ## Model
 
