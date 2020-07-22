@@ -66,6 +66,7 @@ Retrieves the meta-data of the form for the given UUID.
 Prefix | URI 
 --- | --- 
 searchToezicht: |  <http://lblod.data.gift/vocabularies/search-queries-toezicht/>
+search: | <http://redpencil.data.gift/vocabularies/search-queries/>
 skos: |  <http://www.w3.org/2004/02/skos/core#>
 mu: |  <http://mu.semte.ch/vocabularies/core/>
 
@@ -81,11 +82,25 @@ Encapsulated a preset of search qeuries/filters.
 
  Name | Predicate | Range | Definition 
 --- | --- | --- | ---
-uuid | `mu:uuid` | `xsd:string` | Unique identifier
-label | `skos:prefLabel` | `xsd:string` | Name of the SearchQuery
-comment | `skos:comment` | `xsd:string` | More detailed description of the SearchQeury
-
-TODO add all the supported filters.
+uuid | `mu:uuid` | `xsd:string` | unique identifier
+label | `skos:prefLabel` | `xsd:string` | name of the SearchQuery
+comment | `skos:comment` | `xsd:string` | more detailed description of the SearchQuery
+term | `search:term` | `xsd:string` | search term filter
+status | `searchToezicht:status` | `xsd:boolean` | state of dossiers filter
+status | `searchToezicht:administrativeUnit` | `uri` | administrative unit filter
+province | `searchToezicht:province` | `uri` | province filter
+administrativeUnitClassification | `searchToezicht:administrativeUnitClassification` | `uri` | administrative unit classification filter
+governingBodyClassification | `searchToezicht:governingBodyClassification` | `uri` | governing-body classification filter
+regulationType | `searchToezicht:regulationType` | `uri` | regulationType filter
+sessionDateFrom | `searchToezicht:sessionDateFrom` | `xsd:date` | session date from filter
+sessionDateTo | `searchToezicht:sessionDateTo` | `xsd:date` | session date to filter
+sentDateFrom | `searchToezicht:sentDateFrom` | `xsd:date` | sent date from filter
+sentDateTo | `searchToezicht:sentDateTo` | `xsd:date` | sent date to filter 
+chartOfAccount | `searchToezicht:chartOfAccount` | `uri` | chart of account filter
+dateOfEntryIntoForceFrom | `searchToezicht:dateOfEntryIntoForceFrom` | `xsd:date` | date of entry into force from filter
+dateOfEntryIntoForceTo | `searchToezicht:dateOfEntryIntoForceTo` | `xsd:date` | date of entry into force to filter
+dateNoLongerInForceFrom | `searchToezicht:dateNoLongerInForceFrom` | `xsd:date` | date no longer in force from filter
+dateNoLongerInForceTo | `searchToezicht:dateNoLongerInForceTo` | `xsd:date` | date no longer in force to filter
 
 ## Development
 
