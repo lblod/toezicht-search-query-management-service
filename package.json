@@ -1,6 +1,6 @@
 {
   "name": "toezicht-search-query-management-service",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Service that provides management of search-queries.",
   "dependencies": {
     "@lblod/mu-auth-sudo": "^0.2.0",
